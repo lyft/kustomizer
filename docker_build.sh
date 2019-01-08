@@ -7,7 +7,7 @@ echo "------------------------------------"
 echo ""
 
 SHA=$(git rev-parse HEAD)
-RELEASE_SEMVER=$(git describe --tags --exact-match $GIT_SHA 2>/dev/null)
+RELEASE_SEMVER=$(git describe --tags --exact-match "$GIT_SHA" 2>/dev/null)
 
 if [ -n "$REGISTRY" ]; then
   # Do not push if there are unstaged git changes
@@ -25,7 +25,7 @@ echo "$IMAGE_NAME:latest built locally."
 if [ -n "$REGISTRY" ]; then
 
   if [ -n "${DOCKER_REGISTRY_PASSWORD}" ]; then
-    docker login --username=${DOCKER_REGISTRY_USERNAME} --password=${DOCKER_REGISTRY_PASSWORD}
+    docker login --username="$DOCKER_REGISTRY_USERNAME" --password="$DOCKER_REGISTRY_PASSWORD"
   fi
 
   SHA_IMAGE_TAG="${REGISTRY}/${IMAGE_NAME}:${SHA}"
@@ -35,7 +35,7 @@ if [ -n "$REGISTRY" ]; then
   docker push "$SHA_IMAGE_TAG"
   echo "${SHA_IMAGE_TAG} pushed to remote"
 
-  if [ -n $RELEASE_SEMVER ]; then
+  if [ -n "$RELEASE_SEMVER" ]; then
 
     SEMVER_IMAGE_TAG="${REGISTRY}/${IMAGE_NAME}:${RELEASE_SEMVER}"
 
