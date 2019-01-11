@@ -6,8 +6,8 @@ echo "          DOCKER BUILD"
 echo "------------------------------------"
 echo ""
 
-SHA=$(git rev-parse HEAD)
-RELEASE_SEMVER=$(git describe --tags --exact-match "$GIT_SHA" 2>/dev/null)
+GIT_SHA=$(git rev-parse HEAD)
+RELEASE_SEMVER=$(git describe --tags --exact-match "$GIT_SHA" 2>/dev/null) || true
 
 if [ -n "$REGISTRY" ]; then
   # Do not push if there are unstaged git changes
@@ -28,7 +28,7 @@ if [ -n "$REGISTRY" ]; then
     docker login --username="$DOCKER_REGISTRY_USERNAME" --password="$DOCKER_REGISTRY_PASSWORD"
   fi
 
-  SHA_IMAGE_TAG="${REGISTRY}/${IMAGE_NAME}:${SHA}"
+  SHA_IMAGE_TAG="${REGISTRY}/${IMAGE_NAME}:${GIT_SHA}"
 
   docker tag "${IMAGE_NAME}:latest" "$SHA_IMAGE_TAG"
 
