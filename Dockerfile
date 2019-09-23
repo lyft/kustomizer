@@ -1,7 +1,7 @@
 FROM alpine:latest
 RUN apk add curl git openssh \
   && git config --global url.ssh://git@github.com/.insteadOf https://github.com/ \
-  && curl -L --output /usr/local/bin/kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v1.0.11/kustomize_1.0.11_linux_amd64 \
-  && echo "2b21b44f0245ac774f0b35e5181fd8ad7fc42a9426bc0bbfe82a75bea286b48b  /usr/local/bin/kustomize" | sha256sum -c \
+  && curl -L --output /usr/local/bin/kustomize https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64 \
+  && echo "73acc575cf4e035a91da63ecffcabe58f9572562b772c1eb7ed863991950afe8  /usr/local/bin/kustomize" | sha256sum -c \
   && chmod +x /usr/local/bin/kustomize
 WORKDIR /kustomize
