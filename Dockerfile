@@ -5,5 +5,4 @@ RUN  curl -L --output /tmp/kustomize_v3.3.0_linux_amd64.tar.gz https://github.co
   && echo "4b49e1bbdb09851f11bb81081bfffddc7d4ad5f99b4be7ef378f6e3cf98d42b6  /tmp/kustomize_v3.3.0_linux_amd64.tar.gz" | sha256sum -c \
   && tar -xvzf /tmp/kustomize_v3.3.0_linux_amd64.tar.gz -C /usr/local/bin \
   && chmod +x /usr/local/bin/kustomize
-RUN kustomize version
 WORKDIR /kustomize
