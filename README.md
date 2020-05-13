@@ -5,7 +5,7 @@ A container for running the k8s [kustomize](https://github.com/kubernetes-sigs/k
 
 mount a directory into the container at `/kustomize` and run kustomize within the image.
 
-example: `docker run -it -v /path/to/my/dir:/kustomize lyft/kustomize:v1.0.11 kustomize build overlays/staging`
+example: `docker run -it -v /path/to/my/dir:/kustomize lyft/kustomizer:v1.0.11 kustomize build overlays/staging`
 
 this will run the kustomization `/path/to/my/dir/overlays/staging/kustomization.yaml`
 
